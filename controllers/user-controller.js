@@ -52,7 +52,31 @@ module.exports = {
         .then(() => res.json({ message: 'User deleted!' }))
         .catch((err) => res.status(500).json(err));
     },
-    
+    // add friend to user by id
+    addFriend({ params }, res) {
+      User.findOneAndUpdate(
+          { _id: params.userId },
+          { $push: { friends: params.friendId } },
+          { new: true, runValidators: true }
+      )
+          .then((user) =>
+              !user
+                  ? res.status(404).json({ message: 'User ID does not exist.' })
+                  : res.json(user))
+          .catch((error) => res.status(500).json(error));
+  },
+  // remove friend from user by id
+  removeFriend({ params }, res) {
+      User.findOneAndUpdate(
+          { _id: params.userId },
+          { $pull: { friends: params.friendId } },
+          { new: true, runValidators: true }
+      )
+          .then(user =>
+              !user
+                  ? res.status(404).json({ message: 'User ID does not exist.' })
+                  : res.json(user))
+          .catch((error) => res.status(500).json(error));
+  }
   };
 
-  module.exports = userController;

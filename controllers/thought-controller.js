@@ -52,7 +52,31 @@ module.exports = {
       .then(() => res.json({ message: 'thought deleted!' }))
       .catch((err) => res.status(500).json(err));
   },
+     //create new reaction
+     addReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $addToSet: { reactions: body } },
+            { runValidators: true, new: true }
+        )
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: "Thought ID does not exist." })
+                    : res.json(thought))
+            .catch((error) => res.status(500).json(error));
+    },
+    // delete reaction
+    removeReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $pull: { reactions: { reactionId: body.reactionId } } },
+            { new: true, runValidators: true }
+        )
+            .then(thought =>
+                !thought
+                    ? res.status(404).json({ message: 'Thought ID does not exist.' })
+                    : res.json(thought))
+            .catch((error) => res.status(500).json(error));
+    }
 
 };
-
-module.exports = thoughtController;
