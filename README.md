@@ -16,3 +16,9 @@ An API for a social network that uses a NoSQL database where users can share the
 ## ScreenShots
 ![Alt text](./img/SNA%201.jpg)
 ![Alt text](./img/SNA%202.jpg)
+
+## Technologies Use
+<p><a href="https://www.mongodb.com/">MongoDB</a></p>
+<p><a href="https://www.npmjs.com/package/mongoose">Mongoose</a></p>
+<p><a href="https://nodejs.org/">Node.js</a></p>
+<p><a href="https://www.npmjs.com/package/express">Express.js</a></p>
