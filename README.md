@@ -22,7 +22,6 @@ An API for a social network that uses a NoSQL database where users can share the
 <p><a href="https://www.npmjs.com/package/mongoose">Mongoose</a></p>
 <p><a href="https://nodejs.org/">Node.js</a></p>
 <p><a href="https://www.npmjs.com/package/express">Express.js</a></p>
-## 
 
 ## Have fun and enjoy!
 
